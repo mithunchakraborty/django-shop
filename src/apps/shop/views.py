@@ -7,7 +7,7 @@ from core.views import base_view, BaseView
 logger = logging.getLogger(__name__)
 
 
-@base_view
+# @base_view
 def get_product_list_view(request, category_slug=None):
     """
     Receiving a list of goods.
@@ -32,7 +32,7 @@ def get_product_list_view(request, category_slug=None):
     )
 
 
-@base_view
+# @base_view
 def get_product_detail_view(request, id, slug):
     """
     Receiving one item.
