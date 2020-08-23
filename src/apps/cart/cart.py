@@ -17,7 +17,7 @@ class Cart(object):
 
         self.cart = cart
 
-    def add_or_update_a_cart_item(
+    def add_or_update_cart_item(
         self,
         product,
         quantity=1,
@@ -85,7 +85,7 @@ class Cart(object):
         """
         return sum(item['quantity'] for item in self.cart.values())
 
-    def get_the_total_cost_of_items_in_the_cart(self):
+    def get_total_cost(self):
         """
         Calculation of the cost of goods in the basket.
         """
@@ -93,7 +93,7 @@ class Cart(object):
             Decimal(item['price']) * item['quantity'] for item in self.cart.values()
         )
 
-    def clean_the_basket(self) -> None:
+    def clean_cart(self) -> None:
         """
         Emptying the trash session.
         """

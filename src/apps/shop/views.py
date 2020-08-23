@@ -1,7 +1,7 @@
 import logging
-from django.shortcuts import render, get_object_or_404
-from .models import Category, Product
+from django.shortcuts import render
 from core.views import base_view, BaseView
+from .services.services import *
 
 
 logger = logging.getLogger(__name__)
@@ -13,12 +13,12 @@ def get_product_list_view(request, category_slug=None):
     Receiving a list of goods.
     """
     category = None
-    categories = Category.objects.all()
+    categories = get_all_categories()
 
-    products = Product.objects.filter(available=True)
+    products = get_available_products()
 
     if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
+        category = get_category_with_slug(category_slug)
         products = products.filter(category=category)
 
     return render(
@@ -37,12 +37,7 @@ def get_product_detail_view(request, id, slug):
     """
     Receiving one item.
     """
-    product = get_object_or_404(
-        Product,
-        id=id,
-        slug=slug,
-        available=True
-    )
+    product = get_product(id, slug)
 
     return render(
         request,
