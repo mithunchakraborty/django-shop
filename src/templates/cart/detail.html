@@ -48,6 +48,8 @@
     </table>
     <p class="text-right">
         <a href="{% url "shop:get_product_list_view" %}" class="button light">Continue shopping</a>
-        <a href="#" class="button">Checkout</a>
+        <a href="{% url 'orders:create_order_view' %}" class="button">
+            Checkout
+        </a>
     </p>
 {% endblock %}
