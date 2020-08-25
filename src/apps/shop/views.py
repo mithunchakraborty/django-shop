@@ -2,6 +2,7 @@ import logging
 from django.shortcuts import render
 from core.views import base_view, BaseView
 from .services.services import *
+from cart.forms import CartAddProductForm
 
 
 logger = logging.getLogger(__name__)
@@ -17,9 +18,17 @@ def get_product_list_view(request, category_slug=None):
 
     products = get_available_products()
 
-    if category_slug:
-        category = get_category_with_slug(category_slug)
-        products = products.filter(category=category)
+    try:
+        if category_slug:
+            category = get_category_with_slug(category_slug)
+            products = products.filter(category=category)
+    except Exception as ex:
+        logger.error(
+            f"""
+            [get_product_list_view] No category_slug matches 
+            the given query
+            """
+        )
 
     return render(
         request,
@@ -37,13 +46,24 @@ def get_product_detail_view(request, id, slug):
     """
     Receiving one item.
     """
-    product = get_product(id, slug)
+    try: 
+        product = get_product(id, slug)
+    except Exception as ex:
+        logger.error(
+            f"""
+            [get_product_detail_view] No Product matches the 
+            given query with id = {id} and slug = {slug}
+            """
+        )
+
+    cart_product_form = CartAddProductForm()
 
     return render(
         request,
         'shop/product/detail.html',
         {
-            'product': product
+            'product': product,
+            'cart_product_form': cart_product_form
         }
     )
 

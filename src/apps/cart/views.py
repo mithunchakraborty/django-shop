@@ -8,7 +8,7 @@ from .forms import CartAddProductForm
 @require_POST
 def add_product_to_cart(request, product_id):
     """
-
+    Adds a product to the cart. Returns a view of the cart.
     """
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
@@ -27,7 +27,7 @@ def add_product_to_cart(request, product_id):
 
 def remove_product_from_cart(request, product_id):
     """
-
+    Removes an item from the cart. Returns a view of the cart.
     """
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
@@ -38,7 +38,7 @@ def remove_product_from_cart(request, product_id):
 
 def cart_detail(request):
     """
-
+    Returns a view of the cart.
     """
     cart = Cart(request)
 

@@ -5,7 +5,6 @@ from shop.models import Product
 
 class Cart(object):
     """
-    Basket class.
     """
     def __init__(self, request):
         self.session = request.session
