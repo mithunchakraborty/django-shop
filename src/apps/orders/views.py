@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
+from .tasks import send_mail_about_order
 
 
 def create_order_view(request):
@@ -24,6 +25,8 @@ def create_order_view(request):
                 )
 
             cart.clean_cart()
+
+            send_mail_about_order.delay(order.id)
             
             return render(
                 request,

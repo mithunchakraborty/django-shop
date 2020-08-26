@@ -44,6 +44,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
