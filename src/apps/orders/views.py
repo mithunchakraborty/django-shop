@@ -1,8 +1,8 @@
+from django.core.mail import send_mail
 from django.shortcuts import render
 from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
-from .tasks import send_mail_about_order
 
 
 def create_order_view(request):
@@ -26,7 +26,15 @@ def create_order_view(request):
 
             cart.clean_cart()
 
-            send_mail_about_order.delay(order.id)
+            # Send email
+            send_mail(
+                'Subject here',
+                'Here is the message.',
+                'motyletsdenis@gmail.com',
+                ['den.armstrong99@gmail.com'],
+                fail_silently=False,
+                    
+            )
             
             return render(
                 request,

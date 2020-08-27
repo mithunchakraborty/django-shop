@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
-    'orders.apps.OrdersConfig'
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [
@@ -44,7 +44,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 TEMPLATES = [
     {
@@ -90,6 +89,14 @@ LOGGING = {
 }
 
 WSGI_APPLICATION = 'config.wsgi.application'
+
+
+# Email settings
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'kichman'
+EMAIL_HOST_PASSWORD = 'tyktyktyk1999'
+EMAIL_PORT = '465'
 
 
 # Database
