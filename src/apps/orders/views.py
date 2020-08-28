@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
+from .services import send_email_if_order_created
 
 
 def create_order_view(request):
@@ -27,14 +28,7 @@ def create_order_view(request):
             cart.clean_cart()
 
             # Send email
-            send_mail(
-                'Subject here',
-                'Here is the message.',
-                'motyletsdenis@gmail.com',
-                ['den.armstrong99@gmail.com'],
-                fail_silently=False,
-                    
-            )
+            send_email_if_order_created(order.id)
             
             return render(
                 request,

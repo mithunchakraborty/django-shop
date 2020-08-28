@@ -93,10 +93,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Email settings
 
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = 'kichman'
-EMAIL_HOST_PASSWORD = 'tyktyktyk1999'
-EMAIL_PORT = '465'
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_USER = 'den.armstrong99@gmail.com'
+
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
+
+EMAIL_PORT = '587'
+
+EMAIL_USE_TLS = True
 
 
 # Database
