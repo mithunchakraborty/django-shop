@@ -35,5 +35,5 @@ def get_product(id, slug=None):
             available=True
         )
     else:    
-        return get_object_o_404(Product, id=id)
+        return get_object_or_404(Product, id=id)
 
